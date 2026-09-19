@@ -1,0 +1,1299 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAFFA.DEV | My Profile</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --blue: #00d9ff;
+    --purple: #8b5cf6;
+    --bg: #050816;
+    --card: rgba(13, 25, 48, .82);
+    --text: #f5f8ff;
+    --muted: #a5b4d0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+        radial-gradient(circle at 15% 20%, #123b73, transparent 35%),
+        radial-gradient(circle at 85% 70%, #36145f, transparent 35%),
+        #050816;
+}
+
+#particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* LOGIN */
+
+#loginPage {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #050816;
+    transition: opacity .8s, transform .8s;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid #00d9ff66;
+    border-radius: 25px;
+    background: rgba(10, 20, 43, .92);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 50px #00d9ff22;
+    animation: loginAppear 1s ease;
+}
+
+.login-logo {
+    font-size: 55px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 15px var(--blue));
+    animation: float 3s infinite ease-in-out;
+}
+
+.login-box h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--blue);
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.login-box p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #315071;
+    background: #071226;
+    color: white;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.login-box input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 15px #00d9ff33;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #007cf0, #00d9ff);
+    color: #00101e;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login-box button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px #00d9ff66;
+}
+
+#error {
+    color: #ff6b8a;
+    font-size: 13px;
+    margin-top: 15px;
+    min-height: 20px;
+}
+
+.login-footer {
+    margin-top: 25px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.shake {
+    animation: shake .4s;
+}
+
+#loginPage.exit {
+    opacity: 0;
+    transform: scale(1.1);
+    pointer-events: none;
+}
+
+/* NAVBAR */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    background: rgba(5, 8, 22, .88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid #00d9ff22;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--blue);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    list-style: none;
+}
+
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 12px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--blue);
+}
+
+#language {
+    background: #0b1931;
+    color: var(--blue);
+    border: 1px solid #00d9ff55;
+    padding: 9px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+/* CLOCK */
+
+.clock {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 90;
+    padding: 12px 18px;
+    background: rgba(7, 18, 38, .88);
+    border: 1px solid #00d9ff66;
+    border-radius: 14px;
+    box-shadow: 0 0 20px #00d9ff15;
+    backdrop-filter: blur(15px);
+}
+
+#digitalClock {
+    color: var(--blue);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+#digitalDate {
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* HERO */
+
+.hero {
+    min-height: 90vh;
+    padding: 80px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.hero-text {
+    max-width: 650px;
+}
+
+.tag {
+    display: inline-block;
+    color: var(--blue);
+    border: 1px solid #00d9ff55;
+    background: #00d9ff0d;
+    padding: 9px 16px;
+    border-radius: 30px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 5vw, 65px);
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    background: linear-gradient(90deg, #00d9ff, #a78bfa);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero h2 {
+    margin: 15px 0;
+    font-size: 22px;
+    color: #a5b4d0;
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin: 20px 0 30px;
+    font-size: 14px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 14px 25px;
+    border-radius: 12px;
+    color: #00101e;
+    font-weight: 700;
+    background: linear-gradient(90deg, #00d9ff, #8b5cf6);
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px #00d9ff44;
+}
+
+.profile-area {
+    position: relative;
+    flex-shrink: 0;
+    animation: float 4s ease-in-out infinite;
+}
+
+.profile-ring {
+    width: 310px;
+    height: 310px;
+    padding: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d9ff, #8b5cf6, #00d9ff);
+    box-shadow: 0 0 50px #00d9ff33;
+}
+
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #071226;
+    background: #0b1931;
+}
+
+.profile-label {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: #0b1931;
+    border: 1px solid #00d9ff66;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: var(--blue);
+}
+
+/* SECTIONS */
+
+section {
+    padding: 90px 10%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 800;
+}
+
+.section-title h2 span {
+    color: var(--blue);
+}
+
+.section-title p {
+    color: var(--muted);
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+.glass {
+    background: var(--card);
+    border: 1px solid #3a527544;
+    border-radius: 22px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 50px #00000022;
+}
+
+/* BIODATA */
+
+.bio-card {
+    max-width: 850px;
+    margin: auto;
+    padding: 35px;
+}
+
+.bio-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid #ffffff12;
+    font-size: 14px;
+}
+
+.bio-row:last-child {
+    border-bottom: none;
+}
+
+.bio-row span:first-child {
+    color: var(--muted);
+}
+
+.bio-row span:last-child {
+    color: var(--blue);
+    text-align: right;
+    font-weight: 600;
+}
+
+/* HOBI */
+
+.hobi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.hobi-card {
+    padding: 30px;
+    transition: .4s;
+}
+
+.hobi-card:hover {
+    transform: translateY(-10px);
+    border-color: #00d9ff88;
+    box-shadow: 0 15px 40px #00d9ff12;
+}
+
+.hobi-icon {
+    font-size: 45px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.hobi-card h3 {
+    color: var(--blue);
+    margin-bottom: 12px;
+    font-size: 19px;
+}
+
+.hobi-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* CODING */
+
+.story {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+    border-left: 4px solid var(--blue);
+}
+
+.story h3 {
+    color: var(--blue);
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.story p {
+    color: #b6c5dc;
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* DREAM */
+
+.dream {
+    padding: 55px 35px;
+    text-align: center;
+    background: linear-gradient(135deg, #10284a, #17113b, #071226);
+    border: 1px solid #00d9ff33;
+    border-radius: 25px;
+}
+
+.dream-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.dream h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.dream h2 span {
+    color: var(--blue);
+}
+
+.dream p {
+    color: var(--muted);
+    max-width: 700px;
+    margin: auto;
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* SCROLL ANIMATION */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    border-top: 1px solid #00d9ff22;
+    background: #050816;
+}
+
+footer p {
+    font-size: 12px;
+    color: #7c8da8;
+}
+
+footer span {
+    color: var(--blue);
+}
+
+/* ANIMATIONS */
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes loginAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-5px); }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 65px 7%;
+    }
+
+    .profile-ring {
+        width: 240px;
+        height: 240px;
+    }
+
+    .hobi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        padding: 18px 5%;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    section {
+        padding: 65px 7%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 18px;
+    }
+
+    .profile-ring {
+        width: 200px;
+        height: 200px;
+    }
+
+    .bio-card, .story {
+        padding: 22px;
+    }
+
+    .bio-row {
+        font-size: 12px;
+    }
+
+    .dream h2 {
+        font-size: 25px;
+    }
+
+    .clock {
+        right: 10px;
+        bottom: 10px;
+        padding: 9px 12px;
+    }
+
+    #digitalClock {
+        font-size: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- LOGIN -->
+
+<div id="loginPage">
+    <div class="login-box" id="loginBox">
+
+        <div class="login-logo">🔐</div>
+
+        <h1>DAFFA.DEV</h1>
+
+        <p data-id="Selamat datang di website pribadi saya."
+           data-en="Welcome to my personal website.">
+            Selamat datang di website pribadi saya.
+        </p>
+
+        <p data-id="Masukkan password untuk melanjutkan."
+           data-en="Enter your password to continue.">
+            Masukkan password untuk melanjutkan.
+        </p>
+
+        <form id="loginForm">
+            <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password..."
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit"
+                data-id="MASUK SEKARANG →"
+                data-en="LOGIN NOW →">
+                MASUK SEKARANG →
+            </button>
+        </form>
+
+        <div id="error"></div>
+
+        <div class="login-footer">
+            PERSONAL WEBSITE • 2026
+        </div>
+
+    </div>
+</div>
+
+<!-- CLOCK -->
+
+<div class="clock">
+    <div id="digitalClock">00:00:00</div>
+    <div id="digitalDate"></div>
+</div>
+
+<!-- WEBSITE -->
+
+<div id="website" style="display:none;">
+
+    <nav>
+        <div class="logo">DAFFA.DEV</div>
+
+        <ul>
+            <li><a href="#home" data-id="Beranda" data-en="Home">Beranda</a></li>
+            <li><a href="#biodata" data-id="Biodata" data-en="Profile">Biodata</a></li>
+            <li><a href="#hobi" data-id="Hobi" data-en="Hobbies">Hobi</a></li>
+            <li><a href="#coding" data-id="Coding" data-en="Coding">Coding</a></li>
+            <li><a href="#cita" data-id="Cita-Cita" data-en="Dream">Cita-Cita</a></li>
+            <li>
+                <select id="language" aria-label="Pilih bahasa">
+                    <option value="id">🇮🇩 ID</option>
+                    <option value="en">🇬🇧 EN</option>
+                </select>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+
+    <div class="hero" id="home">
+
+        <div class="hero-text reveal">
+
+            <div class="tag"
+                data-id="✦ SELAMAT DATANG DI WEBSITE SAYA"
+                data-en="✦ WELCOME TO MY PERSONAL WEBSITE">
+                ✦ SELAMAT DATANG DI WEBSITE SAYA
+            </div>
+
+            <h1>
+                <span data-id="Halo, Saya" data-en="Hello, I'm">
+                    Halo, Saya
+                </span><br>
+                <span>M. Daffa Al Fatih</span>
+            </h1>
+
+            <h2 data-id="Pelajar • Calon Programmer"
+                data-en="Student • Future Programmer">
+                Pelajar • Calon Programmer
+            </h2>
+
+            <p
+                data-id="Selamat datang di website pribadi saya. Saya adalah seorang pelajar yang tertarik dengan dunia teknologi, komputer, dan pemrograman. Di sini, kamu bisa mengenal lebih dekat tentang diri saya, hobi, perjalanan belajar coding, serta cita-cita saya di masa depan."
+                data-en="Welcome to my personal website. I am a student interested in technology, computers, and programming. Here, you can learn about me, my hobbies, my coding journey, and my dreams for the future.">
+                Selamat datang di website pribadi saya. Saya adalah
+                seorang pelajar yang tertarik dengan dunia teknologi,
+                komputer, dan pemrograman. Di sini, kamu bisa mengenal
+                lebih dekat tentang diri saya, hobi, perjalanan belajar
+                coding, serta cita-cita saya di masa depan.
+            </p>
+
+            <a href="#biodata" class="btn"
+                data-id="Kenali Saya Lebih Dekat →"
+                data-en="Get to Know Me →">
+                Kenali Saya Lebih Dekat →
+            </a>
+
+        </div>
+
+        <div class="profile-area reveal">
+            <div class="profile-ring">
+
+                <!-- FOTO PROFIL JPG -->
+                <img
+                    src="WhatsApp Image 2026-09-18 at 20.32.14.jpeg"
+                    alt="Foto Profil Daffa"
+                    class="profile"
+                >
+
+            </div>
+
+            <div class="profile-label">
+                ✦ FUTURE PROGRAMMER
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BIODATA -->
+
+    <section id="biodata" class="reveal">
+
+        <div class="section-title">
+            <h2 data-id="Biodata Saya" data-en="About Me">
+                Biodata <span>Saya</span>
+            </h2>
+            <p data-id="Informasi singkat tentang diri saya."
+               data-en="A little information about me.">
+                Informasi singkat tentang diri saya.
+            </p>
+        </div>
+
+        <div class="bio-card glass">
+
+            <div class="bio-row">
+                <span data-id="Nama Lengkap" data-en="Full Name">Nama Lengkap</span>
+                <span>M. Daffa Al Fatih</span>
+            </div>
+
+            <div class="bio-row">
+                <span data-id="Status" data-en="Status">Status</span>
+                <span data-id="Pelajar" data-en="Student">Pelajar</span>
+            </div>
+
+            <div class="bio-row">
+                <span data-id="Kelas" data-en="Grade">Kelas</span>
+                <span>X</span>
+            </div>
+
+            <div class="bio-row">
+                <span data-id="Jurusan" data-en="Major">Jurusan</span>
+                <span data-id="Rekayasa Perangkat Lunak"
+                      data-en="Software Engineering">
+                    Rekayasa Perangkat Lunak
+                </span>
+            </div>
+
+            <div class="bio-row">
+                <span data-id="Hobi" data-en="Hobbies">Hobi</span>
+                <span data-id="Musik, Game, Olahraga"
+                      data-en="Music, Gaming, Sports">
+                    Musik, Game, Olahraga
+                </span>
+            </div>
+
+            <div class="bio-row">
+                <span data-id="Cita-Cita" data-en="Dream">Cita-Cita</span>
+                <span data-id="Programmer" data-en="Programmer">Programmer</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HOBI -->
+
+    <section id="hobi" class="reveal">
+
+        <div class="section-title">
+            <h2 data-id="Hobi Saya" data-en="My Hobbies">
+                Hobi <span>Saya</span>
+            </h2>
+            <p data-id="Beberapa kegiatan yang saya sukai."
+               data-en="Some activities I enjoy.">
+                Beberapa kegiatan yang saya sukai.
+            </p>
+        </div>
+
+        <div class="hobi-grid">
+
+            <div class="hobi-card glass">
+                <span class="hobi-icon">🎧</span>
+
+                <h3 data-id="Mendengarkan Musik"
+                    data-en="Listening to Music">
+                    Mendengarkan Musik
+                </h3>
+
+                <p
+                    data-id="Saya suka mendengarkan musik saat bersantai dan mengisi waktu luang. Musik membuat suasana menjadi lebih menyenangkan dan menemani aktivitas sehari-hari."
+                    data-en="I enjoy listening to music when relaxing or during my free time. Music makes my day more enjoyable and accompanies my daily activities.">
+                    Saya suka mendengarkan musik saat bersantai
+                    dan mengisi waktu luang. Musik membuat suasana
+                    menjadi lebih menyenangkan dan menemani
+                    aktivitas sehari-hari.
+                </p>
+            </div>
+
+            <div class="hobi-card glass">
+                <span class="hobi-icon">🎮</span>
+
+                <h3 data-id="Bermain Game"
+                    data-en="Playing Games">
+                    Bermain Game
+                </h3>
+
+                <p
+                    data-id="Saya senang bermain game karena menyenangkan dan bisa menjadi hiburan setelah belajar. Saya juga tertarik dengan cara game dibuat menggunakan teknologi dan coding."
+                    data-en="I enjoy playing games because they are fun and a way to relax after studying. I am also interested in how games are made using technology and coding.">
+                    Saya senang bermain game karena menyenangkan
+                    dan bisa menjadi hiburan setelah belajar.
+                    Saya juga tertarik dengan cara game dibuat
+                    menggunakan teknologi dan coding.
+                </p>
+            </div>
+
+            <div class="hobi-card glass">
+                <span class="hobi-icon">⚽</span>
+
+                <h3 data-id="Berolahraga"
+                    data-en="Playing Sports">
+                    Berolahraga
+                </h3>
+
+                <p
+                    data-id="Saya suka berolahraga untuk menjaga kebugaran tubuh dan mengisi waktu dengan kegiatan positif. Olahraga juga membuat saya lebih bersemangat menjalani aktivitas."
+                    data-en="I enjoy playing sports to stay active and spend my time doing positive activities. Sports also help me feel more energetic throughout the day.">
+                    Saya suka berolahraga untuk menjaga kebugaran
+                    tubuh dan mengisi waktu dengan kegiatan positif.
+                    Olahraga juga membuat saya lebih bersemangat
+                    menjalani aktivitas.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CODING -->
+
+    <section id="coding" class="reveal">
+
+        <div class="section-title">
+            <h2 data-id="Awal Mengenal Coding"
+               data-en="How I Started Coding">
+                Awal Mengenal <span>Coding</span>
+            </h2>
+
+            <p data-id="Perjalanan saya mengenal dunia pemrograman."
+               data-en="My journey into the world of programming.">
+                Perjalanan saya mengenal dunia pemrograman.
+            </p>
+        </div>
+
+        <div class="story glass">
+
+            <h3 data-id="💻 Dari Rasa Penasaran Menjadi Ketertarikan"
+                data-en="💻 From Curiosity to Passion">
+                💻 Dari Rasa Penasaran Menjadi Ketertarikan
+            </h3>
+
+            <p
+                data-id="Awal saya mengenal coding adalah ketika mulai tertarik dengan dunia teknologi dan komputer. Saya penasaran bagaimana sebuah website, aplikasi, dan game dapat dibuat menggunakan kode program. Dari rasa penasaran tersebut, saya mulai belajar tentang HTML, CSS, dan bahasa pemrograman lainnya."
+                data-en="I first became interested in coding when I started exploring technology and computers. I was curious about how websites, applications, and games are created using code. That curiosity encouraged me to start learning HTML, CSS, and other programming languages.">
+                Awal saya mengenal coding adalah ketika mulai tertarik
+                dengan dunia teknologi dan komputer. Saya penasaran
+                bagaimana sebuah website, aplikasi, dan game dapat
+                dibuat menggunakan kode program. Dari rasa penasaran
+                tersebut, saya mulai belajar tentang HTML, CSS,
+                dan bahasa pemrograman lainnya.
+            </p>
+
+            <br>
+
+            <p
+                data-id="Saat pertama kali belajar coding, saya menyadari bahwa membuat program membutuhkan ketelitian, kesabaran, dan latihan. Walaupun terkadang menemukan kesulitan, saya tetap berusaha belajar dan mencoba hal-hal baru agar kemampuan saya semakin berkembang."
+                data-en="When I first started coding, I realized that programming requires patience, practice, and attention to detail. Even when I face difficulties, I keep learning and trying new things to improve my skills.">
+                Saat pertama kali belajar coding, saya menyadari
+                bahwa membuat program membutuhkan ketelitian,
+                kesabaran, dan latihan. Walaupun terkadang
+                menemukan kesulitan, saya tetap berusaha belajar
+                dan mencoba hal-hal baru agar kemampuan saya
+                semakin berkembang.
+            </p>
+
+            <br>
+
+            <p
+                data-id="Saya berharap dapat terus meningkatkan kemampuan dalam pemrograman dan membuat berbagai proyek yang menarik serta bermanfaat bagi banyak orang."
+                data-en="I hope to continue improving my programming skills and create interesting projects that are useful to many people.">
+                Saya berharap dapat terus meningkatkan kemampuan
+                dalam pemrograman dan membuat berbagai proyek
+                yang menarik serta bermanfaat bagi banyak orang.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- CITA-CITA -->
+
+    <section id="cita" class="reveal">
+
+        <div class="dream">
+
+            <div class="dream-icon">🚀</div>
+
+            <h2 data-id="Cita-Cita Saya Menjadi Programmer"
+                data-en="My Dream Is to Become a Programmer">
+                Cita-Cita Saya Menjadi
+                <span>Programmer</span>
+            </h2>
+
+            <p
+                data-id="Cita-cita saya adalah menjadi seorang programmer yang profesional dan memiliki kemampuan dalam membuat website, aplikasi, serta teknologi yang bermanfaat bagi banyak orang. Untuk mencapai cita-cita tersebut, saya akan terus belajar, berlatih coding, meningkatkan kreativitas, dan tidak mudah menyerah ketika menghadapi kesulitan. Saya berharap suatu hari nanti dapat menciptakan karya teknologi saya sendiri."
+                data-en="My dream is to become a professional programmer who can create websites, applications, and technology that benefits others. To achieve this dream, I will keep learning, practicing coding, improving my creativity, and staying determined when facing challenges. I hope to create my own technology projects one day.">
+                Cita-cita saya adalah menjadi seorang programmer
+                yang profesional dan memiliki kemampuan dalam
+                membuat website, aplikasi, serta teknologi yang
+                bermanfaat bagi banyak orang. Untuk mencapai
+                cita-cita tersebut, saya akan terus belajar,
+                berlatih coding, meningkatkan kreativitas,
+                dan tidak mudah menyerah ketika menghadapi
+                kesulitan. Saya berharap suatu hari nanti
+                dapat menciptakan karya teknologi saya sendiri.
+            </p>
+
+            <br>
+
+            <a href="#home" class="btn"
+                data-id="Kembali ke Atas ↑"
+                data-en="Back to Top ↑">
+                Kembali ke Atas ↑
+            </a>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            © 2026 <span>DAFFA.DEV</span> |
+            <span data-id="Dibuat dengan semangat belajar coding."
+                  data-en="Created with a passion for coding.">
+                Dibuat dengan semangat belajar coding.
+            </span>
+        </p>
+    </footer>
+
+</div>
+
+<script>
+
+/* ================= PASSWORD ================= */
+
+// Ganti password di bawah ini.
+const PASSWORD = "Daffa2011";
+
+const loginPage = document.getElementById("loginPage");
+const loginBox = document.getElementById("loginBox");
+const loginForm = document.getElementById("loginForm");
+const passwordInput = document.getElementById("password");
+const errorMessage = document.getElementById("error");
+const website = document.getElementById("website");
+
+/* ================= SOUND EFFECT ================= */
+
+// Suara dibuat menggunakan Web Audio API.
+// Tidak membutuhkan file audio tambahan.
+
+let audioContext;
+
+function playSound(type) {
+    try {
+        audioContext = audioContext ||
+            new (window.AudioContext || window.webkitAudioContext)();
+
+        if (audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+
+        oscillator.connect(gain);
+        gain.connect(audioContext.destination);
+
+        const now = audioContext.currentTime;
+
+        if (type === "success") {
+            oscillator.type = "sine";
+            oscillator.frequency.setValueAtTime(550, now);
+            oscillator.frequency.setValueAtTime(850, now + 0.12);
+
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+            oscillator.start(now);
+            oscillator.stop(now + 0.35);
+
+        } else {
+            oscillator.type = "triangle";
+            oscillator.frequency.setValueAtTime(220, now);
+            oscillator.frequency.setValueAtTime(150, now + 0.15);
+
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+
+            oscillator.start(now);
+            oscillator.stop(now + 0.3);
+        }
+    } catch (error) {
+        console.log("Audio tidak tersedia.");
+    }
+}
+
+loginForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (passwordInput.value === PASSWORD) {
+        playSound("success");
+
+        errorMessage.textContent = "";
+
+        loginPage.classList.add("exit");
+
+        setTimeout(function() {
+            loginPage.style.display = "none";
+            website.style.display = "block";
+
+            document.querySelectorAll(".reveal").forEach(function(el) {
+                observer.observe(el);
+            });
+
+            window.scrollTo(0, 0);
+        }, 800);
+
+    } else {
+        playSound("error");
+
+        errorMessage.textContent =
+            currentLanguage === "id"
+            ? "Password salah! Silakan coba lagi."
+            : "Incorrect password! Please try again.";
+
+        loginBox.classList.remove("shake");
+
+        void loginBox.offsetWidth;
+
+        loginBox.classList.add("shake");
+
+        passwordInput.value = "";
+        passwordInput.focus();
+    }
+});
+
+/* ================= LANGUAGE ================= */
+
+let currentLanguage = "id";
+
+const languageSelect = document.getElementById("language");
+
+function changeLanguage(language) {
+    currentLanguage = language;
+
+    document.documentElement.lang = language;
+
+    document.querySelectorAll("[data-id]").forEach(function(element) {
+        const text = element.getAttribute("data-" + language);
+
+        if (text !== null) {
+            element.textContent = text;
+        }
+    });
+
+    passwordInput.placeholder =
+        language === "id"
+        ? "Masukkan password..."
+        : "Enter password...";
+
+    if (errorMessage.textContent !== "") {
+        errorMessage.textContent =
+            language === "id"
+            ? "Password salah! Silakan coba lagi."
+            : "Incorrect password! Please try again.";
+    }
+}
+
+languageSelect.addEventListener("change", function() {
+    changeLanguage(this.value);
+});
+
+/* ================= DIGITAL CLOCK ================= */
+
+function updateClock() {
+    const now = new Date();
+
+    document.getElementById("digitalClock").textContent =
+        now.toLocaleTimeString("id-ID", {
+            timeZone: "Asia/Jakarta",
+            hour12: false
+        });
+
+    document.getElementById("digitalDate").textContent =
+        now.toLocaleDateString(
+            currentLanguage === "id" ? "id-ID" : "en-US",
+            {
+                timeZone: "Asia/Jakarta",
+                weekday: "short",
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            }
+        );
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+/* ================= SCROLL ANIMATION ================= */
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+/* ================= PARTICLE BACKGROUND ================= */
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let width, height;
+
+function resizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(
+        Math.floor(width / 12),
+        100
+    );
+
+    particles = [];
+
+    for (let i = 0; i < count; i++) {
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 2 + 0.5,
+            speedX: (Math.random() - 0.5) * 0.5,
+            speedY: (Math.random() - 0.5) * 0.5
+        });
+    }
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach(function(particle, index) {
+        particle.x += particle.speedX;
+        particle.y += particle.speedY;
+
+        if (particle.x < 0 || particle.x > width) {
+            particle.speedX *= -1;
+        }
+
+        if (particle.y < 0 || particle.y > height) {
+            particle.speedY *= -1;
+        }
+
+        ctx.beginPath();
+
+        ctx.arc(
+            particle.x,
+            particle.y,
+            particle.size,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = "rgba(0, 217, 255, 0.75)";
+        ctx.fill();
+
+        for (let j = index + 1; j < particles.length; j++) {
+            const other = particles[j];
+
+            const dx = particle.x - other.x;
+            const dy = particle.y - other.y;
+
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+                ctx.beginPath();
+                ctx.moveTo(particle.x, particle.y);
+                ctx.lineTo(other.x, other.y);
+
+                ctx.strokeStyle =
+                    "rgba(0, 217, 255, " +
+                    (1 - distance / 100) * 0.18 +
+                    ")";
+
+                ctx.stroke();
+            }
+        }
+    });
+
+    requestAnimationFrame(animateParticles);
+}
+
+resizeCanvas();
+animateParticles();
+
+window.addEventListener("resize", resizeCanvas);
+
+</script>
+
+</body>
+</html>
